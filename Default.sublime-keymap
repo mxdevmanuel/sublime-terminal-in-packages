@@ -1,0 +1,3 @@
+[
+	{ "keys": ["ctrl+,"], "command": "terminal_in_packages", "args": {} },
+]

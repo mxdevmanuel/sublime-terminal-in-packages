@@ -1,0 +1,58 @@
+[
+    {
+    "caption": "Tools",
+    "mnemonic": "t",
+    "id": "tools",
+    "children":
+    [
+                    {
+                "caption": "Terminal in packages",
+                "command": "terminal_in_packages"
+
+            },
+    ]
+    },
+   {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Terminal in Packages",
+                        "children":
+                        [
+                            {
+                                "command": "open_file",
+                                "args": {"file": "${packages}/TerminalinPackages/Default.sublime-keymap"},
+                                "caption": "Key Bindings – Default"
+                            },
+                                                        {
+                                "command": "open_file",
+                                "args": {"file": "${packages}/User/TerminalinPackages/Default.sublime-keymap"},
+                                "caption": "Key Bindings – User"
+                            },
+                            { "caption": "-" },
+                            {
+                                "command": "open_file",
+                                "args": {"file": "${packages}/Terminal in Packages/terminalinpackages.sublime-settings"},
+                                "caption": "Settings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {"file": "${packages}/User/terminalinpackages.sublime-settings"},
+                                "caption": "Settings – User"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

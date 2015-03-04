@@ -6,7 +6,7 @@ import subprocess
 import platform
 
 PLATFORM = platform.system()
-TERMINAL = 'gnome-terminal'
+TERMINAL = ''
 log = print
 
 
@@ -44,6 +44,12 @@ class CommandThread(threading.Thread):
 
 
 class TerminalInPackagesCommand(sublime_plugin.WindowCommand):
+
+    def __init__(self, *args, **kwargs):
+        self.settings = sublime.load_settings('terminalinpackages.sublime-settings')
+        global TERMINAL
+        TERMINAL = self.settings.get('terminal-emulator')
+        super(TerminalInPackagesCommand, self).__init__(*args, **kwargs)
 
     def run(self):
         pdir = sublime.packages_path()
