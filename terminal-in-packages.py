@@ -6,13 +6,13 @@ import subprocess
 import platform
 
 PLATFORM = platform.system()
-TERMINAL = ''
 
 
 class CommandThread(threading.Thread):
 
-    def __init__(self, command):
+    def __init__(self, command, terminal):
         self.command = command
+        self.terminal = terminal
         self.package_dir = sublime.packages_path()
         threading.Thread.__init__(self)
 
@@ -25,7 +25,7 @@ class CommandThread(threading.Thread):
             ]
         if PLATFORM == 'Linux':
             command = [
-                TERMINAL,
+                self.terminal,
                 '-e', 'bash -c \"{0}; read line\"'.format(self.command)
             ]
         if PLATFORM == 'Darwin':
@@ -51,7 +51,6 @@ class TerminalInPackagesCommand(sublime_plugin.WindowCommand):
             command = 'cmd'
         if PLATFORM == 'Linux' or PLATFORM == 'Darwin':
             command = "bash"
-        global TERMINAL
-        TERMINAL = self.settings.get('terminal-emulator')
-        thread = CommandThread(command)
+        terminal = self.settings.get('terminal-emulator')
+        thread = CommandThread(command, terminal)
         thread.start()
